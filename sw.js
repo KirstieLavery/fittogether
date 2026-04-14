@@ -1,10 +1,10 @@
-const CACHE_NAME = 'fittogether-v1';
+const CACHE_NAME = 'fittogether-v2';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  '/fittogether/',
+  '/fittogether/index.html',
+  '/fittogether/manifest.json',
+  '/fittogether/icon-192.png',
+  '/fittogether/icon-512.png'
 ];
 
 // Install: cache core assets
