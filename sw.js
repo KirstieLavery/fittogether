@@ -1,11 +1,10 @@
-const CACHE_NAME = 'fittogether-v3';
-const BASE = '/fittogether';
+const CACHE_NAME = 'fittogether-v4';
 const ASSETS = [
-  BASE + '/',
-  BASE + '/index.html',
-  BASE + '/manifest.json',
-  BASE + '/icon-192.png',
-  BASE + '/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Install: cache core assets
@@ -26,7 +25,7 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch: serve from cache, fall back to network, fall back to index.html
+// Fetch: serve from cache, fall back to network, always serve index.html for navigation
 self.addEventListener('fetch', event => {
   // Always go to network for Supabase API calls
   if (event.request.url.includes('supabase.co')) {
@@ -34,11 +33,11 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // For navigation requests (page loads), always serve index.html from cache
+  // For navigation requests, always serve index.html
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(BASE + '/index.html').then(cached => {
-        return cached || fetch(BASE + '/index.html');
+      caches.match('/index.html').then(cached => {
+        return cached || fetch('/index.html');
       })
     );
     return;
